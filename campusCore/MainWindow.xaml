@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:campusCore"
         mc:Ignorable="d"
-        Title="campu" Height="450" Width="800">
+        Title="campusCore" Height="450" Width="800">
     <Grid>
-
+        
     </Grid>
 </Window>
