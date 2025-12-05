@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="campusCore.Header"
+﻿<UserControl x:Class="campusCore.Sidebar"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,12 +6,8 @@
              xmlns:local="clr-namespace:campusCore"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280">
-    <Grid Background="Gray" Height="60" 
-      VerticalAlignment="Top" >
-        <TextBlock Text="Campus Core"
-                VerticalAlignment="Center"
-                Margin="20 0"
-                FontSize="20"
-                Foreground="Blue"/>
+    <Grid Width="200" 
+          HorizontalAlignment="Left" Height="660" VerticalAlignment="Bottom" >
+            
     </Grid>
 </UserControl>

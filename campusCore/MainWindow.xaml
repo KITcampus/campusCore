@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:campusCore"
         xmlns:controls="clr-namespace:campusCore"
         mc:Ignorable="d"
-        Title="campusCore" Height="450" Width="800">
+        Title="campusCore" Height="720" Width="1280">
     <Grid>
         <controls:Header/>
     </Grid>
