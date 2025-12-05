@@ -7,21 +7,21 @@ namespace campusCore
     
     public partial class App : Application
     {
-        private void Application_Startup(object sender, StartupEventArgs e)
-        {
-            LoginWindow login = new LoginWindow();
-            bool? result = login.ShowDialog();
+        //private void Application_Startup(object sender, StartupEventArgs e)
+        //{
+        //    LoginWindow login = new LoginWindow();
+        //    bool? result = login.ShowDialog();
 
-            if (result == true)
-            {
-                MainWindow main = new MainWindow();
-                main.Show();
-            }
-            else
-            {
-                Application.Current.Shutdown();
-            }
-        }
+        //    if (result == true)
+        //    {
+        //        MainWindow main = new MainWindow();
+        //        main.Show();
+        //    }
+        //    else
+        //    {
+        //        Application.Current.Shutdown();
+        //    }
+        //}
     }
 
 }
