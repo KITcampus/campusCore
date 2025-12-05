@@ -6,12 +6,26 @@
              xmlns:local="clr-namespace:campusCore"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280">
-    <Grid Background="white" Height="60" 
-      VerticalAlignment="Top" >
-        <Image Source="pack://application:,,,/Img/Logo.png"
+    <Grid Background="white" Height="60">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left: Logo -->
+        <Image x:Name="logo" Source="pack://application:,,,/Img/Logo.png"
                Width="80" Height="60"
-               Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
-        <Button x:Name="Logout" Content="로그아웃" HorizontalAlignment="Right" Margin="-4,0,20,0" Cursor="Hand" Background="Transparent" BorderThickness="0"
-                HorizontalContentAlignment="Center" FontWeight="Bold" FontFamily="Arial Black"/>
+               Margin="10,0,0,0"
+               VerticalAlignment="Center"
+               Grid.Column="0"/>
+
+        <!-- Right: Logout -->
+        <Button Content="로그아웃"
+                Grid.Column="2"
+                Margin="0,0,20,0"
+                Background="{x:Null}"
+                Cursor="Hand"
+                FontWeight="Bold" BorderBrush="{x:Null}" HorizontalAlignment="Right" Click="Button_Click"/>
     </Grid>
 </UserControl>
