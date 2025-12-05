@@ -5,25 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:campusCore"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1280">
-    <StackPanel Width="200" 
-          HorizontalAlignment="Left" Height="740" VerticalAlignment="Bottom" Background="Gray" >
-        <TextBlock Text="학적"
-                   VerticalAlignment="Top"
-                   Margin="20 20"
-                   FontSize="20"
-                   Foreground="Gray"/>
-        <Grid Height="200">
+             d:DesignHeight="800" d:DesignWidth="1600">
+    <StackPanel Width="200"
+            Background="White" HorizontalAlignment="Left">
+        <TextBlock Text="학적" Margin="20 20"
+               FontSize="15"
+               Foreground="Gray"
+               HorizontalAlignment="Left"/>
+
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button Content="학생정보조회" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="25" Cursor="Hand"/>
-
-
+            <Button Content="학생정보조회"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                FontSize="15"
+                Cursor="Hand" 
+                Margin="10,0,0,0"
+                Grid.Row="0" HorizontalAlignment="Center" Click="Button_Click"/>
+            <Image x:Name="stuInfo" Source="C:\Users\PC1\Documents\GitHub\campusCore\campusCore\campusCore\Img\stuInfo.png"
+                Width="30" Height="30"
+                Margin="18,0,0,0"
+                VerticalAlignment="Center" HorizontalAlignment="Left"/>
         </Grid>
     </StackPanel>
 </UserControl>

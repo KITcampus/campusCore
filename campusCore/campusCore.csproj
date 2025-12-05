@@ -9,10 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\AstaSans-VariableFont_wght.ttf" />
     <None Remove="Img\Logo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fonts\AstaSans-VariableFont_wght.ttf" />
     <Resource Include="Img\Logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
