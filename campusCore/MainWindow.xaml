@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:campusCore"
         xmlns:controls="clr-namespace:campusCore"
         mc:Ignorable="d"
-        Title="CampusCore" Height="720" Width="1280">
+        Title="CampusCore" Height="800" Width="1600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -14,7 +14,6 @@
         </Grid.RowDefinitions>
 
         <controls:Header Grid.Row="0"/>
-        
-
+        <controls:Sidebar Grid.Row="1"/>
     </Grid>
 </Window>
