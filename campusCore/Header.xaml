@@ -11,6 +11,7 @@
         <Image Source="pack://application:,,,/Img/Logo.png"
                Width="80" Height="60"
                Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
-        <Button x:Name="Logout" Content="로그아웃" HorizontalAlignment="Right" Margin="-4,0,20,0" Cursor="Hand" Background="Transparent" HorizontalContentAlignment="Center" FontWeight="Bold" FontFamily="Arial Black" Click="Logout_Click"/>
+        <Button x:Name="Logout" Content="로그아웃" HorizontalAlignment="Right" Margin="-4,0,20,0" Cursor="Hand" Background="Transparent" BorderThickness="0"
+                HorizontalContentAlignment="Center" FontWeight="Bold" FontFamily="Arial Black"/>
     </Grid>
 </UserControl>
