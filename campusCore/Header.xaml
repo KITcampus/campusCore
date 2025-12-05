@@ -23,9 +23,9 @@
         <!-- Right: Logout -->
         <Button Content="로그아웃"
                 Grid.Column="2"
-                Margin="0,0,20,0"
+                Margin="0,5,20,0"
                 Background="{x:Null}"
                 Cursor="Hand"
-                FontWeight="Bold" BorderBrush="{x:Null}" HorizontalAlignment="Right" Click="Button_Click"/>
+                FontWeight="Bold" BorderBrush="{x:Null}" HorizontalAlignment="Right" Click="Button_Click" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

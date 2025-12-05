@@ -9,8 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Db\CompusCore.db" />
     <None Remove="Fonts\AstaSans-VariableFont_wght.ttf" />
     <None Remove="Img\Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Db\CompusCore.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
