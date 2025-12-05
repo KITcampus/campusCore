@@ -6,12 +6,11 @@
              xmlns:local="clr-namespace:campusCore"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280">
-    <Grid Background="Gray" Height="60" 
+    <Grid Background="white" Height="60" 
       VerticalAlignment="Top" >
-        <TextBlock Text="Campus Core"
-                VerticalAlignment="Center"
-                Margin="20 0"
-                FontSize="20"
-                Foreground="Blue"/>
+        <Image Source="pack://application:,,,/Img/Logo.png"
+               Width="80" Height="60"
+               Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
+        <Button x:Name="Logout" Content="로그아웃" HorizontalAlignment="Right" Margin="-4,0,20,0" Cursor="Hand" Background="Transparent" HorizontalContentAlignment="Center" FontWeight="Bold" FontFamily="Arial Black" Click="Logout_Click"/>
     </Grid>
 </UserControl>

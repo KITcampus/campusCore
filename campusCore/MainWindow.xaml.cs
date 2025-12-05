@@ -20,5 +20,10 @@ namespace campusCore
         {
             InitializeComponent();
         }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

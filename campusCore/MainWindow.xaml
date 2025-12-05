@@ -6,8 +6,15 @@
         xmlns:local="clr-namespace:campusCore"
         xmlns:controls="clr-namespace:campusCore"
         mc:Ignorable="d"
-        Title="campusCore" Height="720" Width="1280">
+        Title="CampusCore" Height="720" Width="1280">
     <Grid>
-        <controls:Header/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <controls:Header Grid.Row="0"/>
+        
+
     </Grid>
 </Window>
