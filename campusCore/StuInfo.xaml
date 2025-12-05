@@ -1,0 +1,31 @@
+﻿<Page x:Class="campusCore.StuInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:campusCore"
+      xmlns:controls="clr-namespace:campusCore"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1600"
+      Title="StuInfo" Background="#FFE6E6E6">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <controls:Header Grid.Row="0"/>
+        <controls:Sidebar Grid.Row="1"/>
+        <StackPanel Grid.Row="1">
+            <Grid Margin="200,0,0,0" Height="740">
+                <TextBlock TextWrapping="Wrap" Text="학생정보조회" Margin="30,20,0,0" FontSize="20" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                
+                <Grid Height="680" VerticalAlignment="Bottom"/>
+
+            </Grid>
+        </StackPanel>
+
+
+    </Grid>
+</Page>
