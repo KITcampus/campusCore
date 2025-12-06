@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Fonts\AstaSans-VariableFont_wght.ttf" />
     <Resource Include="Img\Logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

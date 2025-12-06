@@ -7,21 +7,14 @@ namespace campusCore
     
     public partial class App : Application
     {
-        //private void Application_Startup(object sender, StartupEventArgs e)
-        //{
-        //    LoginWindow login = new LoginWindow();
-        //    bool? result = login.ShowDialog();
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
 
-        //    if (result == true)
-        //    {
-        //        MainWindow main = new MainWindow();
-        //        main.Show();
-        //    }
-        //    else
-        //    {
-        //        Application.Current.Shutdown();
-        //    }
-        //}
+            // 로그인 창 먼저 띄우기
+            Login login = new Login();
+            login.Show();
+        }
     }
 
 }
