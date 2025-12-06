@@ -13,31 +13,37 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--  헤더 -->
+        <!-- 헤더 -->
         <controls:Header Grid.Row="0" />
 
         <!-- 내용 -->
         <Grid Grid.Row="1" Background="#F8F9FC">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
-                <!-- 사이드 바 -->
+                <!-- Sidebar -->
                 <ColumnDefinition Width="*"/>
-                <!-- 캘린더 -->
+                <!-- 컨텐츠 영역 -->
             </Grid.ColumnDefinitions>
 
-            <controls:Sidebar Grid.Column="0" />
+            <!-- Sidebar -->
+            <controls:Sidebar Grid.Column="0"/>
 
-            <!-- 캘린더-->
-            <Grid Grid.Column="1" Margin="20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+            <!-- 컨텐츠 영역: 캘린더 + Page 표시 -->
+            <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden">
+                <Frame.Content>
+                    <!-- 초기 화면: 기존 캘린더 그리드 -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                <TextBlock x:Name="TitleText" Text="2025년 12월" FontSize="28" FontWeight="Bold" Margin="0 0 0 20" />
+                        <TextBlock x:Name="TitleText" Text="2025년 12월" FontSize="28" FontWeight="Bold" Margin="0 0 0 20" />
 
-                <Grid x:Name="CalendarGrid" Grid.Row="1" Background="White" Margin="0" />
-            </Grid>
+                        <Grid x:Name="CalendarGrid" Grid.Row="1" Background="White" Margin="0"/>
+                    </Grid>
+                </Frame.Content>
+            </Frame>
         </Grid>
     </Grid>
 </Window>

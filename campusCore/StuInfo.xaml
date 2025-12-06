@@ -6,26 +6,24 @@
       xmlns:local="clr-namespace:campusCore"
       xmlns:controls="clr-namespace:campusCore"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1600"
-      Title="StuInfo" Background="#FFE6E6E6">
+      d:DesignHeight="700" d:DesignWidth="1350"
+      Title="StuInfo" Background="#F8F9FC">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <StackPanel Margin="0,0,0,0">
+            <TextBlock Text="학생정보조회" FontSize="28" FontWeight="Bold" Margin="0,0,0,20"/>
 
-        <controls:Header Grid.Row="0"/>
-        <controls:Sidebar Grid.Row="1"/>
-        <StackPanel Grid.Row="1">
-            <Grid Margin="200,0,0,0" Height="740">
-                <TextBlock TextWrapping="Wrap" Text="학생정보조회" Margin="30,20,0,0" FontSize="20" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                
-                <Grid Height="680" VerticalAlignment="Bottom"/>
-
+            <Grid Background="White" Height="640">
+                <Grid Margin="20,20">
+                    <DataGrid AutoGenerateColumns="False" HeadersVisibility="Column" SelectionChanged="DataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="학생 이름" Binding="{Binding Name}" Width="*" FontSize="20"/>
+                            <DataGridTextColumn Header="학번" Binding="{Binding StudentID}" Width="*" FontSize="20"/>
+                            <DataGridTextColumn Header="전공" Binding="{Binding Major}" Width="*" FontSize="20"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </Grid>
         </StackPanel>
-
-
     </Grid>
 </Page>
