@@ -27,8 +27,7 @@ namespace campusCore
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // MainWindow 안 Frame에 StuInfo 페이지 띄우기
-            MainWindow main = Application.Current.MainWindow as MainWindow;
+            MainWindow main = Window.GetWindow(this) as MainWindow;
             if (main != null)
             {
                 main.MainFrame.Navigate(new StuInfo());
