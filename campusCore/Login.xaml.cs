@@ -21,6 +21,9 @@ namespace campusCore
     /// </summary>
     public partial class Login : Window
     {
+       // 계속 변수를 여러함수에서 쓰니까 전역변수로 선언
+        private static readonly string ConnStr = "Data Source=Db/CompusCore.db;Version=3;";
+
         public Login()
         {
             InitializeComponent();
@@ -58,10 +61,7 @@ namespace campusCore
                 return;
             }
 
-            // SQLite 연결
-            string connStr = "Data Source=Db/CompusCore.db;Version=3;";
-
-            using (SQLiteConnection conn = new SQLiteConnection(connStr))
+            using (SQLiteConnection conn = new SQLiteConnection(ConnStr))
             {
                 conn.Open();
 
@@ -107,10 +107,8 @@ namespace campusCore
             string status = now.TimeOfDay > new TimeSpan(10, 0, 0)
                 ? "지각"
                 : "출석";
-
-            string connStr = "Data Source=Db/CompusCore.db;Version=3;";
-
-            using (SQLiteConnection conn = new SQLiteConnection(connStr))
+            MessageBox.Show("today = " + today);
+            using (SQLiteConnection conn = new SQLiteConnection(ConnStr))
             {
                 conn.Open();
 
