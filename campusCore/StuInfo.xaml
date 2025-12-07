@@ -8,6 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1400"
       Title="StuInfo" Background="#F8F9FC">
+
     <Border BorderBrush="Black"
         BorderThickness="1"
         CornerRadius="3"
@@ -39,7 +40,7 @@
 
                     <!-- 첫번째 행 -->
                     <TextBlock Text="학번/성명" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                    <TextBox Grid.Row="0" Grid.Column="1"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Student.studentId}"/>
                     <TextBox Grid.Row="0" Grid.Column="2"/>
                     <TextBlock Text="학과" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
                     <TextBox Grid.Row="0" Grid.Column="4"/>

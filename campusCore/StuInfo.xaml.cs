@@ -1,4 +1,5 @@
-﻿using System;
+﻿using campusCore.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace campusCore
     /// </summary>
     public partial class StuInfo : Page
     {
+        private StuInfoViewModel vm;
+    
         public StuInfo()
         {
             InitializeComponent();
+            vm = new StuInfoViewModel();
+            DataContext = vm;
+
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
