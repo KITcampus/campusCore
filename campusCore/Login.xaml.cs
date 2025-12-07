@@ -78,7 +78,8 @@ namespace campusCore
                     {
                         // 세션에 로그인한 학생 아이디 저장
                         UserSession.StudentId = id;
-
+                        // 출석 기록 함수
+                        InsertAttendance(id);
                         MainWindow main = new MainWindow();
                         main.Show();
                         this.Close();
@@ -90,11 +91,57 @@ namespace campusCore
                 }
             }
         }
+        // placeholder처럼 만드는 함수
         private void txtId_TextChanged(object sender, TextChangedEventArgs e)
         {
             phId.Visibility = string.IsNullOrEmpty(txtId.Text) ? Visibility.Visible : Visibility.Hidden;
         }
-    
+
+        // 출석 기록 함수
+        private void InsertAttendance(string studentId)
+        {
+            string today = DateTime.Now.ToString("yyyy-MM-dd");
+            DateTime now = DateTime.Now;
+
+            // 10시 기준 출석/지각 판별
+            string status = now.TimeOfDay > new TimeSpan(10, 0, 0)
+                ? "지각"
+                : "출석";
+
+            string connStr = "Data Source=Db/CompusCore.db;Version=3;";
+
+            using (SQLiteConnection conn = new SQLiteConnection(connStr))
+            {
+                conn.Open();
+
+                // 오늘 출석 기록이 있는지 확인
+                string checkSql = @"SELECT COUNT(*) FROM attendance 
+                                    WHERE studentId = @id AND attendanceDate = @date";
+
+                using (SQLiteCommand checkCmd = new SQLiteCommand(checkSql, conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@id", studentId);
+                    checkCmd.Parameters.AddWithValue("@date", today);
+
+                    int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                    if (exists == 0)
+                    {
+                        string insertSql = @"INSERT INTO attendance (studentId, attendanceDate, status)
+                                             VALUES (@id, @date, @status)";
+
+                        using (SQLiteCommand insertCmd = new SQLiteCommand(insertSql, conn))
+                        {
+                            insertCmd.Parameters.AddWithValue("@id", studentId);
+                            insertCmd.Parameters.AddWithValue("@date", today);
+                            insertCmd.Parameters.AddWithValue("@status", status);
+
+                            insertCmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+
+        }
     }
-   
 }

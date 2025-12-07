@@ -65,16 +65,10 @@
 
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                                 <CheckBox x:Name="chkSaveId" Content="아이디 저장" Margin="0 0 20 0" Cursor="Hand"/>
-
-                                <Button Content="아이디 찾기"
-                                        Background="Transparent"
-                                        Foreground="#0A57FF"
-                                        BorderThickness="0"
-                                        Cursor="Hand"/>
                             </StackPanel>
 
                             <Button Content="로그인" Height="45" Width="120"
-                                    Background="#0A57FF" Foreground="White"
+                                    Background="#FFC82A29" Foreground="White"
                                     FontSize="18" FontWeight="Bold"
                                     HorizontalAlignment="Left" Cursor="Hand" Click="Button_Click_1" IsDefault="True"/>
 

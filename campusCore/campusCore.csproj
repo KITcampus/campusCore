@@ -13,10 +13,14 @@
     <None Remove="Fonts\AstaSans-VariableFont_wght.ttf" />
     <None Remove="Img\login_img.png" />
     <None Remove="Img\Logo.png" />
+    <None Remove="Img\stuInfo.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Db\CompusCore.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Img\stuInfo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

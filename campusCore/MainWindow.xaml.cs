@@ -35,17 +35,12 @@ namespace campusCore
             for (int c = 0; c < 7; c++)
                 CalendarGrid.ColumnDefinitions.Add(new ColumnDefinition());
 
-            // 최대 6주 필요
             for (int r = 0; r < 6; r++)
                 CalendarGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
 
-            // 시작 요일: DateTime.DayOfWeek (Sunday = 0)
             DateTime first = new DateTime(year, month, 1);
-            int startDayOfWeek = (int)first.DayOfWeek; // 일=0, 월=1, ...
+            int startDayOfWeek = (int)first.DayOfWeek;
             int days = DateTime.DaysInMonth(year, month);
-
-            // 옵션: 만약 '월요일 시작'으로 바꾸려면 아래처럼 바꿔라:
-            // startDayOfWeek = (startDayOfWeek + 6) % 7;
 
             for (int day = 1; day <= days; day++)
             {
@@ -53,7 +48,6 @@ namespace campusCore
                 int row = index / 7;
                 int col = index % 7;
 
-                // cell container
                 var border = new Border
                 {
                     BorderBrush = new SolidColorBrush(Color.FromRgb(220, 220, 220)),
@@ -62,7 +56,6 @@ namespace campusCore
                     Background = Brushes.White
                 };
 
-                // day text
                 var txt = new TextBlock
                 {
                     Text = day.ToString(),
@@ -72,11 +65,10 @@ namespace campusCore
                     FontSize = 14
                 };
 
-                // 강조: 오늘이면 배경색/폰트 변경
                 DateTime thisDate = new DateTime(year, month, day);
                 if (thisDate.Date == DateTime.Today.Date)
                 {
-                    border.Background = new SolidColorBrush(Color.FromRgb(240, 248, 255)); // 연한 하늘색
+                    border.Background = new SolidColorBrush(Color.FromRgb(240, 248, 255));
                     txt.FontWeight = FontWeights.Bold;
                     txt.Foreground = Brushes.DarkBlue;
                 }
@@ -87,8 +79,6 @@ namespace campusCore
                 Grid.SetColumn(border, col);
                 CalendarGrid.Children.Add(border);
             }
-
-            // 빈 칸들은 자연스럽게 비워둠 (Grid는 이미행/열 정의 되어 있어서 빈 셀 OK)
         }
     }
 }
