@@ -1,4 +1,5 @@
-﻿using System;
+﻿using campusCore.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,13 @@ namespace campusCore
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            UserSession.StudentId = null;
 
+            Login login = new Login();
+            login.Show();
+
+            Window parent = Window.GetWindow(this);
+            parent.Close();
         }
     }
 }

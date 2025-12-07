@@ -9,7 +9,7 @@ namespace campusCore
 {
     public static class Dbcontact
     { 
-        private static readonly string connectionString = "Data Source=campusCore.db;";
+        private static readonly string connectionString = "Data Source=Db/CompusCore.db;Version=3;";
 
         public static SQLiteConnection GetConnection()
         {

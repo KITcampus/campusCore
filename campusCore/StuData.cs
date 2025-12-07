@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace campusCore
+{
+    public class StuData
+    {
+        public required string Pw { get; set; }
+        public required string Name { get; set; }
+        public required string StudentId { get; set; }
+        public int Grade { get; set; }
+    }
+
+}

@@ -5,12 +5,100 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:campusCore"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
-    <StackPanel Margin="20">
-        <TextBlock Text="로그인" FontSize="24" FontWeight="Bold" Margin="0 0 0 20"/>
-        <TextBox x:Name="txtId"  Margin="0 0 0 10" Text="학번" Cursor="Hand"/>
-        <PasswordBox x:Name="txtPw" Margin="0 0 0 10" Cursor="Hand"/>
-        <Button Content="로그인" Click="Button_Click" />
-    </StackPanel>
+        Title="Login" Height="700" Width="1000">
+    <DockPanel>
+
+        <!--Logo-->
+        <StackPanel Orientation="Horizontal" Margin="20" DockPanel.Dock="Top">
+            <Image Source="pack://application:,,,/Img/Logo.png"
+                   Height="40" Stretch="Uniform"/>
+            <TextBlock Text="CampusCore 학생 출결 시스템"
+                       FontSize="22" FontWeight="SemiBold"
+                       VerticalAlignment="Center" Margin="10 0 0 0" Foreground="#FFC82A29"/>
+        </StackPanel>
+
+
+        <Grid Background="#F5F5F5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Margin="20" Grid.Row="0">
+                <Border Background="White" CornerRadius="10" 
+                BorderBrush="#DDD" BorderThickness="1" Padding="30">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <!-- Img -->
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="3*" />
+                            <!-- Login Form -->
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Img -->
+                        <Border Margin="10" CornerRadius="5" ClipToBounds="True">
+                            <Image Source="pack://application:,,,/Img/login_img.png"
+                           Stretch="UniformToFill"/>
+                        </Border>
+
+                        <!-- Login Form -->
+                        <StackPanel Grid.Column="1" Margin="40" Height="351.463333333333">
+
+                            <TextBlock Text="LOGIN" FontSize="26" 
+                                       FontWeight="Bold" Margin="0 0 0 20"/>
+                            <Grid>
+                                <TextBox x:Name="txtId" Height="40"
+                                         Margin="0 0 0 10" Padding="10"
+                                         FontSize="16" Cursor="Hand" TextChanged="txtId_TextChanged"/>
+
+                                <TextBlock x:Name="phId"
+                                           Text="학번 또는 교직원 번호를 입력하시오."
+                                           Foreground="#AAA"
+                                           Margin="15,14,0,0"
+                                           VerticalAlignment="Top"
+                                           IsHitTestVisible="False" FontSize="13"/>
+                            </Grid>
+
+                            <PasswordBox x:Name="txtPw" Height="40"
+                                 Margin="0 0 0 20" Padding="10 5"
+                                 FontSize="16" Cursor="Hand"/>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                                <CheckBox x:Name="chkSaveId" Content="아이디 저장" Margin="0 0 20 0" Cursor="Hand"/>
+
+                                <Button Content="아이디 찾기"
+                                        Background="Transparent"
+                                        Foreground="#0A57FF"
+                                        BorderThickness="0"
+                                        Cursor="Hand"/>
+                            </StackPanel>
+
+                            <Button Content="로그인" Height="45" Width="120"
+                                    Background="#0A57FF" Foreground="White"
+                                    FontSize="18" FontWeight="Bold"
+                                    HorizontalAlignment="Left" Cursor="Hand" Click="Button_Click_1" IsDefault="True"/>
+
+                            <TextBlock Text="아이디/비밀번호 안내"
+                                       Foreground="#0A57FF" Margin="0 10 0 5"
+                                       FontWeight="Bold"/>
+
+                            <TextBlock Text="학생은 학번, 교직원은 교직원 번호를 입력하세요."
+                                       Foreground="#666"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- Footer -->
+            <StackPanel Grid.Row="1" Margin="20" HorizontalAlignment="Center">
+                <TextBlock Text="[개인정보 처리방침]  [영상정보처리기기 운영·관리 방침]" 
+                   Foreground="#777" Margin="0 0 0 10"/>
+                <TextBlock Text="ADD 부산광역시 사상구 주례로 45   TEL 051.324.5555   FAX 051.324.1858"
+                   Foreground="#777"/>
+                <TextBlock Text="Copyright © 2009 Kyungnam College of Information Technology."
+                   Foreground="#777"/>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
 
 </Window>

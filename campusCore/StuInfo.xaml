@@ -8,22 +8,148 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1350"
       Title="StuInfo" Background="#F8F9FC">
+    <Border BorderBrush="Black"
+        BorderThickness="1"
+        CornerRadius="3"
+        Padding="10"
+        Margin="10">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
 
-    <Grid>
-        <StackPanel Margin="0,0,0,0">
-            <TextBlock Text="학생정보조회" FontSize="28" FontWeight="Bold" Margin="0,0,0,20"/>
+                <!-- 상단 제목 -->
+                <TextBlock Text="학적조회"
+                       FontSize="28"
+                       FontWeight="SemiBold"
+                       Margin="0 0 0 20"/>
 
-            <Grid Background="White" Height="640">
-                <Grid Margin="20,20">
-                    <DataGrid AutoGenerateColumns="False" HeadersVisibility="Column" SelectionChanged="DataGrid_SelectionChanged">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="학생 이름" Binding="{Binding Name}" Width="*" FontSize="20"/>
-                            <DataGridTextColumn Header="학번" Binding="{Binding StudentID}" Width="*" FontSize="20"/>
-                            <DataGridTextColumn Header="전공" Binding="{Binding Major}" Width="*" FontSize="20"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                <!-- 기본 정보 테이블 -->
+                <Grid Margin="0 0 0 20"
+                  Background="White"
+                  BorderBrush="#DDD"
+                  BorderThickness="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- 1행 -->
+                    <Border Grid.Row="0" Grid.Column="0" BorderBrush="#DDD" BorderThickness="0 0 1 1" Background="#F7F7F7">
+                        <TextBlock Text="학번/성명" VerticalAlignment="Center" Margin="10 0"/>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="1" BorderBrush="#DDD" BorderThickness="0 0 1 1">
+                        <TextBlock Text="" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="2" BorderBrush="#DDD" BorderThickness="0 0 1 1" Background="#F7F7F7">
+                        <TextBlock Text="학과" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="3" BorderBrush="#DDD" BorderThickness="0 0 1 1">
+                        <TextBlock Text="" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <!-- 2행 -->
+                    <Border Grid.Row="1" Grid.Column="0" BorderBrush="#DDD" BorderThickness="0 0 1 1" Background="#F7F7F7">
+                        <TextBlock Text="과정/학년/반" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="1" BorderBrush="#DDD" BorderThickness="0 0 1 1">
+                        <TextBlock Text="" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="2" BorderBrush="#DDD" BorderThickness="0 0 1 1" Background="#F7F7F7">
+                        <TextBlock Text="전공" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="3" BorderBrush="#DDD" BorderThickness="0 0 1 1">
+                        <TextBlock Text="" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <!-- 3행 -->
+                    <Border Grid.Row="2" Grid.Column="0" Background="#F7F7F7" BorderBrush="#DDD" BorderThickness="0 0 1 1">
+                        <TextBlock Text="학적상태/주민번호" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="2" Grid.Column="1" BorderBrush="#DDD" BorderThickness="0 0 1 1">
+                        <TextBlock Text="" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="2" Grid.Column="2" Background="#F7F7F7" BorderBrush="#DDD" BorderThickness="0 0 1 1">
+                        <TextBlock Text="지도교수" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="2" Grid.Column="3" BorderBrush="#DDD" BorderThickness="0 0 1 1">
+                        <TextBlock Text="" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <!-- 4행 -->
+                    <Border Grid.Row="3" Grid.Column="0" Background="#F7F7F7" BorderBrush="#DDD" BorderThickness="0 0 0 1">
+                        <TextBlock Text="최종변동" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="3" Grid.Column="1" BorderBrush="#DDD" BorderThickness="0 0 0 1">
+                        <TextBlock Text="" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="3" Grid.Column="2" Background="#F7F7F7" BorderBrush="#DDD" BorderThickness="0 0 0 1">
+                        <TextBlock Text="주소" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Row="3" Grid.Column="3" BorderBrush="#DDD" BorderThickness="0 0 0 1">
+                        <TextBlock Text="" Margin="10 0" VerticalAlignment="Center"/>
+                    </Border>
                 </Grid>
-            </Grid>
-        </StackPanel>
-    </Grid>
+
+                <!-- 학생정보 제목 -->
+                <TextBlock Text="● 학생정보"
+                       Margin="0 0 0 10"
+                       FontWeight="Bold"
+                       FontSize="16"/>
+
+                <!-- 탭 메뉴 -->
+                <TabControl>
+                    <TabItem Header="개인정보">
+                        <Grid Background="White" Margin="0" BorderBrush="#DDD" BorderThickness="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- 예: 휴대폰 -->
+                            <Border Grid.Row="0" Grid.Column="0" Background="#F7F7F7" BorderBrush="#DDD" BorderThickness="0 0 1 1">
+                                <TextBlock Text="휴대폰" VerticalAlignment="Center" Margin="10 0"/>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="1" BorderBrush="#DDD" BorderThickness="0 0 1 1">
+                                <TextBlock Text="" VerticalAlignment="Center" Margin="10 0"/>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="2" Background="#F7F7F7" BorderBrush="#DDD" BorderThickness="0 0 1 1">
+                                <TextBlock Text="전화번호" VerticalAlignment="Center" Margin="10 0"/>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="3" BorderBrush="#DDD" BorderThickness="0 0 1 1">
+                                <TextBlock Text="" VerticalAlignment="Center" Margin="10 0"/>
+                            </Border>
+
+                            <!-- 아래행들도 동일 구조 반복 -->
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="학적변동">
+                        <TextBlock Text="학적변동 내용 없음" Margin="10"/>
+                    </TabItem>
+
+                </TabControl>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Border>
 </Page>

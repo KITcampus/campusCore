@@ -28,7 +28,6 @@
             <!-- Sidebar -->
             <controls:Sidebar Grid.Column="0"/>
 
-            <!-- 컨텐츠 영역: 캘린더 + Page 표시 -->
             <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden">
                 <Frame.Content>
                     <!-- 초기 화면: 기존 캘린더 그리드 -->
