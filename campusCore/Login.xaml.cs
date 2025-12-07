@@ -36,7 +36,7 @@ namespace campusCore
             }
 
             // SQLite 연결
-            string connStr = "Data Source=Db/compusCore.db;Version=3;";
+            string connStr = "Data Source=Db/CompusCore.db;Version=3;";
 
             using (SQLiteConnection conn = new SQLiteConnection(connStr))
             {
