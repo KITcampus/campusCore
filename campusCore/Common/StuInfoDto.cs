@@ -9,6 +9,7 @@ namespace campusCore.Common
     public class StuInfoDto
     {
         public int studentId { get; set; }
+        public string residentNum { get; set; }
         public string pw { get; set; }
         public string name { get; set; }
         public int grade { get; set; }
