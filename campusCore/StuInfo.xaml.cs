@@ -1,4 +1,5 @@
 ﻿using campusCore.Common;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,6 +13,10 @@ namespace campusCore
     {
         // StuInfoViewModel 인스턴스를 저장할 필드
         private StuInfoViewModel vm;
+
+        private bool isPwValid = false;
+        private bool isPwMatch = false;
+
 
         // Page가 생성될 때 실행되는 생성자
         public StuInfo()
@@ -32,5 +37,96 @@ namespace campusCore
             // 나중에 행 선택 후 상세 정보 표시하거나 수정 기능 넣을 때 사용됨
         }
 
+        private void txtNewPw_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            string pw = txtNewPw.Password;
+            string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#]).{8,}$";
+
+            isPwValid = Regex.IsMatch(pw, pattern);
+
+            if (!isPwValid)
+                txtPwCheckMsg.Text = "❌ 대/소문자, 숫자, 특수문자 포함 8자 이상";
+            else
+            {
+                txtPwCheckMsg.Foreground = System.Windows.Media.Brushes.Green;
+                txtPwCheckMsg.Text = "✔ 사용 가능한 비밀번호";
+            }
+
+            CheckPasswordMatch();
+        }
+
+        private void txtPwConfirm_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            CheckPasswordMatch();
+        }
+
+        private void CheckPasswordMatch()
+        {
+            if (txtNewPw.Password == string.Empty || txtNewPwConfirm.Password == string.Empty)
+            {
+                txtPwMatchMsg.Text = "";
+                return;
+            }
+
+            if (txtNewPw.Password == txtNewPwConfirm.Password)
+            {
+                if (!isPwValid)
+                {
+                    txtPwMatchMsg.Text = "✔ 비밀번호는 같지만 조건이 충족되지 않았습니다.";
+                    txtPwMatchMsg.Foreground = System.Windows.Media.Brushes.Orange;
+                }
+                else
+                {
+                    txtPwMatchMsg.Text = "✔ 비밀번호가 일치합니다.";
+                    txtPwMatchMsg.Foreground = System.Windows.Media.Brushes.Green;
+                }
+
+                isPwMatch = true;
+            }
+            else
+            {
+                txtPwMatchMsg.Text = "❌ 비밀번호가 일치하지 않습니다.";
+                txtPwMatchMsg.Foreground = System.Windows.Media.Brushes.Red;
+                isPwMatch = false;
+            }
+        }
+
+        private void ChangePw_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isPwValid)
+            {
+                MessageBox.Show("비밀번호 조건을 만족해야 합니다.");
+                return;
+            }
+
+            if (!isPwMatch)
+            {
+                MessageBox.Show("비밀번호가 일치하지 않습니다.");
+                return;
+            }
+
+            var vm = this.DataContext as StuInfoViewModel;
+
+            if (vm.ChangePassword(txtNewPw.Password))
+            {
+                MessageBox.Show("비밀번호가 변경되었습니다!");
+
+                // 입력창 초기화
+                txtNewPw.Password = string.Empty;
+                txtNewPwConfirm.Password = string.Empty;
+
+                // 메시지 초기화
+                txtPwCheckMsg.Text = string.Empty;
+                txtPwMatchMsg.Text = string.Empty;
+
+                // 상태 초기화
+                isPwValid = false;
+                isPwMatch = false;
+            }
+            else
+            {
+                MessageBox.Show("변경 실패");
+            }
+        }
     }
 }

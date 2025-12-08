@@ -1,5 +1,6 @@
 ﻿using campusCore.Common;
 using Microsoft.Data.Sqlite;
+using System.Data.SQLite;
 using System.Windows;
 
 namespace campusCore.Repository
@@ -39,7 +40,20 @@ namespace campusCore.Repository
                             name = reader.GetString(reader.GetOrdinal("name")),
                             grade = reader.GetInt32(reader.GetOrdinal("grade")),
                             class_ = reader.GetString(reader.GetOrdinal("class")),
-                            residentNum = reader.GetString(reader.GetOrdinal("residentNum"))
+                            residentNum = reader.GetString(reader.GetOrdinal("residentNum")),
+                            department = reader.GetString(reader.GetOrdinal("department")),
+                            major = reader.GetString(reader.GetOrdinal("major")),
+                            englishName = reader.GetString(reader.GetOrdinal("englishName")),
+                            phone = reader.GetString(reader.GetOrdinal("phone")),
+                            address = reader.GetString(reader.GetOrdinal("address")),
+                            email = reader.GetString(reader.GetOrdinal("email")),
+                            admissionDate = reader.GetString(reader.GetOrdinal("admissionDate")),
+                            admissionType = reader.GetString(reader.GetOrdinal("admissionType")),
+                            studentStatus = reader.GetString(reader.GetOrdinal("studentStatus")),
+                            professor = reader.GetString(reader.GetOrdinal("professor")),
+                            emergency1 = reader.GetString(reader.GetOrdinal("emergency1")),
+                            emergency2 = reader.GetString(reader.GetOrdinal("emergency2")),
+                            lastUpdated = reader.GetString(reader.GetOrdinal("lastUpdated"))
                         };
                     }
                     else
@@ -52,6 +66,24 @@ namespace campusCore.Repository
 
             // ViewModel로 DTO 반환
             return student;
+        }
+        // 비밀번호 업데이트
+        public bool UpdatePassword(int studentId, string newPw)
+        {
+            using (var conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = "UPDATE StuInfo SET pw=@pw WHERE studentId=@id";
+
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@pw", newPw);
+                    cmd.Parameters.AddWithValue("@id", studentId);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
         }
     }
 }

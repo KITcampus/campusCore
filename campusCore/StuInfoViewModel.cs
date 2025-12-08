@@ -52,5 +52,11 @@ namespace campusCore
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+        // 비밀번호 변경 메서드
+        public bool ChangePassword(string newPw)
+        {
+            return repo.UpdatePassword(Student.studentId, newPw);
+        }
     }
 }

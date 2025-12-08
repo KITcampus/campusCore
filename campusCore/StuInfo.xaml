@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:campusCore"
       xmlns:controls="clr-namespace:campusCore"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="1400"
+      d:DesignHeight="2000" d:DesignWidth="1400"
       Title="StuInfo" Background="#F8F9FC">
 
     <Border BorderBrush="Black"
@@ -43,37 +43,37 @@
                     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Student.studentId}"/>
                     <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding Student.name}"/>
                     <TextBlock Text="학과" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                    <TextBox Grid.Row="0" Grid.Column="4"/>
+                    <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding Student.major}" IsReadOnly="True"/>
                     <TextBlock Text="입학구분"  Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                    <TextBox Grid.Row="0" Grid.Column="6"/>
+                    <TextBox Grid.Row="0" Grid.Column="6" Text="{Binding Student.admissionType}"/>
 
                     <!-- 두번째 행 -->
                     <TextBlock Text="학년/반" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
                     <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Student.grade}"/>
                     <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Student.class_}"/>
                     <TextBlock Text="전공" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                    <TextBox Grid.Row="1" Grid.Column="4"/>
+                    <TextBox Grid.Row="1" Grid.Column="4"  Text="{Binding Student.department}" IsReadOnly="True"/>
                     <TextBlock Text="입학일"  Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                    <TextBox Grid.Row="1" Grid.Column="6"/>
+                    <TextBox Grid.Row="1" Grid.Column="6" Text="{Binding Student.admissionDate}"/>
 
                     <!-- 세번째 행 -->
                     <TextBlock Text="학적상태" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Student.studentStatus}"/>
                     <TextBlock Text="지도교수" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                    <TextBox Grid.Row="2" Grid.Column="4"/>
+                    <TextBox Grid.Row="2" Grid.Column="4" Text="{Binding Student.professor}"/>
                     <TextBlock Text="연락처"  Grid.Row="2" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                    <TextBox Grid.Row="2" Grid.Column="6"/>
+                    <TextBox Grid.Row="2" Grid.Column="6" Text="{Binding Student.phone}"/>
 
                     <!-- 네번째 행 -->
                     <TextBlock Text="주민번호" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                    <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  Text="{Binding MaskedResidentNumber, Mode=OneWay}" IsReadOnly="True"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding MaskedResidentNumber, Mode=OneWay}" IsReadOnly="True"/>
                     
 
                     <!-- 다섯번째 행 -->
                     <TextBlock Text="최종변동" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                    <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Student.lastUpdated}"/>
                     <TextBlock Text="주소" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                    <TextBox Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3"/>
+                    <TextBox Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Text="{Binding Student.address}"/>
                     
                     
                 </Grid>
@@ -98,22 +98,23 @@
                                     <RowDefinition Height="60"/>
                                     <RowDefinition Height="60"/>
                                     <RowDefinition Height="60"/>
+                                    <RowDefinition Height="60"/>
                                 </Grid.RowDefinitions>
 
                                 <TextBlock Text="영문성명" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                                <TextBox Grid.Row="0" Grid.Column="1" Height="30"/>
+                                <TextBox Grid.Row="0" Grid.Column="1" Height="30" Text="{Binding Student.englishName}"/>
                                 <TextBlock Text="졸업일자" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
                                 <TextBox Grid.Row="0" Grid.Column="3" Height="30"/>
 
                                 <TextBlock Text="휴대폰" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                                <TextBox Grid.Row="1" Grid.Column="1" Height="30"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Height="30" Text="{Binding Student.phone}"/>
                                 <TextBlock Text="전화번호" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                                <TextBox Grid.Row="1" Grid.Column="3" Height="30"/>
+                                <TextBox Grid.Row="1" Grid.Column="3" Height="30" Text="{Binding Student.phone}"/>
 
                                 <TextBlock Text="비상연락망1" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                                <TextBox Grid.Row="2" Grid.Column="1" Height="30"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Height="30" Text="{Binding Student.emergency1}"/>
                                 <TextBlock Text="비상연락망2" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                                <TextBox Grid.Row="2" Grid.Column="3" Height="30"/>
+                                <TextBox Grid.Row="2" Grid.Column="3" Height="30" Text="{Binding Student.emergency2}"/>
 
                                 <TextBlock Text="비상연락망3" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
                                 <TextBox Grid.Row="3" Grid.Column="1" Height="30"/>
@@ -121,13 +122,21 @@
                                 <TextBox Grid.Row="3" Grid.Column="3" Height="30"/>
 
                                 <TextBlock Text="이메일" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                                <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Height="30" Width="546" HorizontalAlignment="Left"/>
+                                <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Height="30" HorizontalAlignment="Left" Text="{Binding Student.email}"/>
                                 
-                                <TextBlock Text="비밀번호" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                                <TextBox Grid.Row="5" Grid.Column="1" Height="30" Width="300" HorizontalAlignment="Left"/>
-                                <TextBlock Text="비밀번호 확인" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                                <TextBox Grid.Row="5" Grid.Column="3" Height="30" Width="300" HorizontalAlignment="Left"/>
+
+                                <TextBlock Text="비밀번호 변경" FontWeight="Bold" Margin="0,0,10,0" HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center"/>
+
+                                <PasswordBox x:Name="txtNewPw" PasswordChanged="txtNewPw_PasswordChanged" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="1" Width="526" Height="30"/>
+                                <TextBlock x:Name="txtPwCheckMsg" Foreground="Red" Width="300" HorizontalAlignment="Left" Grid.Row="6" Grid.Column="1" Height="30" VerticalAlignment="Top"/>
+
+                                <TextBlock Text="비밀번호 확인" FontWeight="Bold" Margin="0,0,10,0" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <PasswordBox x:Name="txtNewPwConfirm" PasswordChanged="txtPwConfirm_PasswordChanged" Width="400" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="3" Height="30"/>
+                                <TextBlock x:Name="txtPwMatchMsg" Foreground="Red" Width="300" HorizontalAlignment="Left" Grid.Row="6" Grid.Column="3" Height="30" VerticalAlignment="Top"/>
+
+                                <Button Content="비밀번호 변경" Width="auto" Height="auto" Click="ChangePw_Click" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" Margin="0,0,50,0"/>
                             </Grid>
+                            
                         </TabItem>
 
                         <TabItem Header="학적변동">
@@ -136,6 +145,7 @@
                             </Grid>
                         </TabItem>
                     </TabControl>
+
                 </StackPanel>
                 
             </StackPanel>
