@@ -126,7 +126,7 @@ namespace campusCore
                     if (exists == 0)
                     {
                         string insertSql = @"INSERT INTO attendance (studentId, attendanceDate, status)
-                                             VALUES (@id, @date, @status)";
+                                                  VALUES (@id, @date, @status)";
 
                         using (SQLiteCommand insertCmd = new SQLiteCommand(insertSql, conn))
                         {
