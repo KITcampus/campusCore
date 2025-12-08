@@ -21,6 +21,9 @@ namespace campusCore
         public MainWindow()
         {
             InitializeComponent();
+
+            HeaderControl.txtWelcome.Text = $"{UserSession.StudentNm}님 출석 체크가 완료되었습니다.";
+
             int year = DateTime.Now.Year;
             int month = 12;
             TitleText.Text = $"{year}년 {month}월";
@@ -34,10 +37,11 @@ namespace campusCore
             CalendarGrid.RowDefinitions.Clear();
             CalendarGrid.ColumnDefinitions.Clear();
 
-            // 7열 (일 ~ 토)
+            // 요일 7칸
             for (int c = 0; c < 7; c++)
                 CalendarGrid.ColumnDefinitions.Add(new ColumnDefinition());
 
+            // 최대 6주
             for (int r = 0; r < 6; r++)
                 CalendarGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
 
@@ -59,11 +63,10 @@ namespace campusCore
                     Background = Brushes.White
                 };
 
-                // StackPanel로 날짜 + 상태 표시
-                var sp = new StackPanel
+                // 날짜 + 도장 표시용 Grid
+                var cellGrid = new Grid
                 {
-                    Margin = new Thickness(4),
-                    VerticalAlignment = VerticalAlignment.Top
+                    Margin = new Thickness(4)
                 };
 
                 // 날짜 텍스트
@@ -74,9 +77,18 @@ namespace campusCore
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top
                 };
-
-                // 오늘 날짜 강조
+               
                 DateTime thisDate = new DateTime(year, month, day);
+
+                if (thisDate.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    txtDay.Foreground = new SolidColorBrush(Color.FromRgb(30, 80, 200)); // 파랑
+                }
+                else if (thisDate.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    txtDay.Foreground = new SolidColorBrush(Color.FromRgb(220, 50, 50)); // 빨강
+                }
+                // 오늘 날짜 강조
                 if (thisDate.Date == DateTime.Today.Date)
                 {
                     border.Background = new SolidColorBrush(Color.FromRgb(240, 248, 255));
@@ -84,45 +96,77 @@ namespace campusCore
                     txtDay.Foreground = Brushes.DarkBlue;
                 }
 
-                // 출석 상태 텍스트
-                var txtStatus = new TextBlock
+                // 도장(원 + 글자)
+                var stampGrid = new Grid
                 {
-                    FontSize = 12,
-                    Margin = new Thickness(0, 5, 0, 0),
-                    HorizontalAlignment = HorizontalAlignment.Left
+                    Width = 28,
+                    Height = 28,
+                    HorizontalAlignment = HorizontalAlignment.Right,
+                    VerticalAlignment = VerticalAlignment.Bottom,
+                    Margin = new Thickness(0, 0, 4, 4),
+                    Visibility = Visibility.Hidden // 상태 없으면 안 보임
                 };
 
-                // 달력에 내 출결상태 표시
+                var circle = new Ellipse
+                {
+                    Width = 28,
+                    Height = 28,
+                };
+
+                var stampText = new TextBlock
+                {
+                    FontSize = 13,
+                    FontWeight = FontWeights.Bold,
+                    Foreground = Brushes.White,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center
+                };
+
+                stampGrid.Children.Add(circle);
+                stampGrid.Children.Add(stampText);
+
+                // 출결 상태 가져오기
                 string date = thisDate.ToString("yyyy-MM-dd");
                 string studentId = UserSession.StudentId;
                 string status = AttendanceDAO.GetStatus(studentId, date);
 
                 if (status == "출석")
                 {
-                    txtStatus.Text = "출석";
-                    txtStatus.Foreground = new SolidColorBrush(Color.FromRgb(0, 120, 0)); // 초록
+                    circle.Fill = Brushes.Transparent;
+                    circle.Stroke = new SolidColorBrush(Color.FromRgb(44, 160, 44)); // 초록 테두리
+                    circle.StrokeThickness = 3;
+
+                    stampText.Text = "출석";
+                    stampText.Foreground = new SolidColorBrush(Color.FromRgb(44, 160, 44));
+                    stampGrid.Visibility = Visibility.Visible;
                 }
                 else if (status == "지각")
                 {
-                    txtStatus.Text = "지각";
-                    txtStatus.Foreground = new SolidColorBrush(Color.FromRgb(200, 120, 0)); // 주황
+                    circle.Fill = Brushes.Transparent;
+                    circle.Stroke = new SolidColorBrush(Color.FromRgb(255, 140, 0)); // 주황 테두리
+                    circle.StrokeThickness = 3;
+
+                    stampText.Text = "지각";
+                    stampText.Foreground = new SolidColorBrush(Color.FromRgb(255, 140, 0));
+                    stampGrid.Visibility = Visibility.Visible;
                 }
                 else if (status == "결석")
                 {
-                    txtStatus.Text = "결석";
-                    txtStatus.Foreground = new SolidColorBrush(Color.FromRgb(200, 0, 0)); // 빨강
-                }
-                else
-                {
-                    txtStatus.Text = "";  // 기록 없는 날은 빈칸
+                    circle.Fill = Brushes.Transparent;
+                    circle.Stroke = new SolidColorBrush(Color.FromRgb(220, 40, 40)); // 빨강 테두리
+                    circle.StrokeThickness = 3;
+
+                    stampText.Text = "결석";
+                    stampText.Foreground = new SolidColorBrush(Color.FromRgb(220, 40, 40));
+                    stampGrid.Visibility = Visibility.Visible;
                 }
 
-                // StackPanel에 날짜 + 상태 넣기
-                sp.Children.Add(txtDay);
-                sp.Children.Add(txtStatus);
 
-                // Border의 자식으로 StackPanel 설정
-                border.Child = sp;
+                // 날짜 + 도장 추가
+                cellGrid.Children.Add(txtDay);
+                cellGrid.Children.Add(stampGrid);
+
+                border.Child = cellGrid;
 
                 Grid.SetRow(border, row);
                 Grid.SetColumn(border, col);

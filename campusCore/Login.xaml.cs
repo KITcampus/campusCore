@@ -1,4 +1,5 @@
-﻿using campusCore.Common;
+﻿using campusCore.Attendance;
+using campusCore.Common;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -78,8 +79,12 @@ namespace campusCore
                     {
                         // 세션에 로그인한 학생 아이디 저장
                         UserSession.StudentId = id;
+                        StudentDAO dao = new StudentDAO();
+                        UserSession.StudentNm = dao.GetStudentName(id);
+
                         // 출석 기록 함수
                         InsertAttendance(id);
+                        AttendanceDAO.FillAbsentDates(id);
                         MainWindow main = new MainWindow();
                         main.Show();
                         this.Close();

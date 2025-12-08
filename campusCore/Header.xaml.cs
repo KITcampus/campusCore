@@ -36,5 +36,7 @@ namespace campusCore
             Window parent = Window.GetWindow(this);
             parent.Close();
         }
+
+        
     }
 }

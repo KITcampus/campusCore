@@ -9,5 +9,6 @@ namespace campusCore.Common
     class UserSession
     {
        public static string StudentId { get; set; }
+        public static string StudentNm { get; set; }
     }
 }

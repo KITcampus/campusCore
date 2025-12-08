@@ -27,5 +27,24 @@ namespace campusCore
                 }
             }
         }
+
+        // 헤더에서 학생 이름을 가져옴
+        public string GetStudentName(string studentId)
+        {
+            using (var conn = Dbcontact.GetConnection())
+            {
+                conn.Open();
+
+                string sql = "SELECT name FROM StuInfo WHERE studentId = @id";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", studentId);
+
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? result.ToString() : null;
+                }
+            }
+        }
     }
 }
