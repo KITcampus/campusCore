@@ -91,14 +91,11 @@ namespace campusCore.Attendance
             // 마지막 출석 날짜 가져오기
             DateTime lastDate = LastAttDate(studentId);
 
-            // 기록이 하나도 없다면 → lastDate를 어제로 설정
             if (lastDate == DateTime.MinValue)
                 lastDate = today.AddDays(-1);
 
-            // lastDate 다음 날부터 오늘 전날까지 결석 처리
             for (DateTime dt = lastDate.AddDays(1); dt < today; dt = dt.AddDays(1))
             {
-                // 주말은 스킵
                 if (dt.DayOfWeek == DayOfWeek.Saturday ||
                     dt.DayOfWeek == DayOfWeek.Sunday)
                     continue;
@@ -113,6 +110,7 @@ namespace campusCore.Attendance
                 InsertAbsent(studentId, dateStr);
             }
         }
+        // 자동 결석insert
         public static void InsertAbsent(string studentId, string date)
         {
             using (SQLiteConnection conn = new SQLiteConnection(ConnStr))

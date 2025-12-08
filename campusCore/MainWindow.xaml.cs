@@ -96,21 +96,21 @@ namespace campusCore
                     txtDay.Foreground = Brushes.DarkBlue;
                 }
 
-                // 도장(원 + 글자)
+                // 도장
                 var stampGrid = new Grid
                 {
-                    Width = 28,
-                    Height = 28,
+                    Width = 35,
+                    Height = 35,
                     HorizontalAlignment = HorizontalAlignment.Right,
                     VerticalAlignment = VerticalAlignment.Bottom,
                     Margin = new Thickness(0, 0, 4, 4),
-                    Visibility = Visibility.Hidden // 상태 없으면 안 보임
+                    Visibility = Visibility.Hidden
                 };
 
                 var circle = new Ellipse
                 {
-                    Width = 28,
-                    Height = 28,
+                    Width = 35,
+                    Height = 35,
                 };
 
                 var stampText = new TextBlock
@@ -133,7 +133,7 @@ namespace campusCore
                 if (status == "출석")
                 {
                     circle.Fill = Brushes.Transparent;
-                    circle.Stroke = new SolidColorBrush(Color.FromRgb(44, 160, 44)); // 초록 테두리
+                    circle.Stroke = new SolidColorBrush(Color.FromRgb(44, 160, 44));
                     circle.StrokeThickness = 3;
 
                     stampText.Text = "출석";
@@ -143,7 +143,7 @@ namespace campusCore
                 else if (status == "지각")
                 {
                     circle.Fill = Brushes.Transparent;
-                    circle.Stroke = new SolidColorBrush(Color.FromRgb(255, 140, 0)); // 주황 테두리
+                    circle.Stroke = new SolidColorBrush(Color.FromRgb(255, 140, 0));
                     circle.StrokeThickness = 3;
 
                     stampText.Text = "지각";
@@ -153,14 +153,13 @@ namespace campusCore
                 else if (status == "결석")
                 {
                     circle.Fill = Brushes.Transparent;
-                    circle.Stroke = new SolidColorBrush(Color.FromRgb(220, 40, 40)); // 빨강 테두리
+                    circle.Stroke = new SolidColorBrush(Color.FromRgb(220, 40, 40));
                     circle.StrokeThickness = 3;
 
                     stampText.Text = "결석";
                     stampText.Foreground = new SolidColorBrush(Color.FromRgb(220, 40, 40));
                     stampGrid.Visibility = Visibility.Visible;
                 }
-
 
                 // 날짜 + 도장 추가
                 cellGrid.Children.Add(txtDay);
