@@ -86,7 +86,7 @@ namespace campusCore
                     }
                     else
                     {
-                        MessageBox.Show("아이디 또는 비밀번호가 올바르지 않습니다.");
+                        MessageBox.Show("아이디 또는 비밀번호가 올바르지 않습니다.", "알림!");
                     }
                 }
             }
@@ -107,7 +107,6 @@ namespace campusCore
             string status = now.TimeOfDay > new TimeSpan(10, 0, 0)
                 ? "지각"
                 : "출석";
-            MessageBox.Show("today = " + today);
             using (SQLiteConnection conn = new SQLiteConnection(ConnStr))
             {
                 conn.Open();

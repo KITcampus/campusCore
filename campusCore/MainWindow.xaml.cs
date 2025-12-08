@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using campusCore.Attendance;
+using campusCore.Common;
 
 namespace campusCore
 {
@@ -24,6 +26,7 @@ namespace campusCore
             TitleText.Text = $"{year}년 {month}월";
             BuildMonthCalendar(year, month);
         }
+
         // 달력 함수
         private void BuildMonthCalendar(int year, int month)
         {
@@ -56,24 +59,70 @@ namespace campusCore
                     Background = Brushes.White
                 };
 
-                var txt = new TextBlock
+                // StackPanel로 날짜 + 상태 표시
+                var sp = new StackPanel
                 {
-                    Text = day.ToString(),
-                    HorizontalAlignment = HorizontalAlignment.Left,
-                    VerticalAlignment = VerticalAlignment.Top,
-                    Margin = new Thickness(6, 4, 4, 4),
-                    FontSize = 14
+                    Margin = new Thickness(4),
+                    VerticalAlignment = VerticalAlignment.Top
                 };
 
+                // 날짜 텍스트
+                var txtDay = new TextBlock
+                {
+                    Text = day.ToString(),
+                    FontSize = 14,
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    VerticalAlignment = VerticalAlignment.Top
+                };
+
+                // 오늘 날짜 강조
                 DateTime thisDate = new DateTime(year, month, day);
                 if (thisDate.Date == DateTime.Today.Date)
                 {
                     border.Background = new SolidColorBrush(Color.FromRgb(240, 248, 255));
-                    txt.FontWeight = FontWeights.Bold;
-                    txt.Foreground = Brushes.DarkBlue;
+                    txtDay.FontWeight = FontWeights.Bold;
+                    txtDay.Foreground = Brushes.DarkBlue;
                 }
 
-                border.Child = txt;
+                // 출석 상태 텍스트
+                var txtStatus = new TextBlock
+                {
+                    FontSize = 12,
+                    Margin = new Thickness(0, 5, 0, 0),
+                    HorizontalAlignment = HorizontalAlignment.Left
+                };
+
+                // 달력에 내 출결상태 표시
+                string date = thisDate.ToString("yyyy-MM-dd");
+                string studentId = UserSession.StudentId;
+                string status = AttendanceDAO.GetStatus(studentId, date);
+
+                if (status == "출석")
+                {
+                    txtStatus.Text = "출석";
+                    txtStatus.Foreground = new SolidColorBrush(Color.FromRgb(0, 120, 0)); // 초록
+                }
+                else if (status == "지각")
+                {
+                    txtStatus.Text = "지각";
+                    txtStatus.Foreground = new SolidColorBrush(Color.FromRgb(200, 120, 0)); // 주황
+                }
+                else if (status == "결석")
+                {
+                    txtStatus.Text = "결석";
+                    txtStatus.Foreground = new SolidColorBrush(Color.FromRgb(200, 0, 0)); // 빨강
+                }
+                else
+                {
+                    txtStatus.Text = "";  // 기록 없는 날은 빈칸
+                }
+
+                // StackPanel에 날짜 + 상태 넣기
+                sp.Children.Add(txtDay);
+                sp.Children.Add(txtStatus);
+
+                // Border의 자식으로 StackPanel 설정
+                border.Child = sp;
 
                 Grid.SetRow(border, row);
                 Grid.SetColumn(border, col);
