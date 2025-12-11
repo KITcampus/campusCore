@@ -63,13 +63,11 @@ namespace campusCore
                     Background = Brushes.White
                 };
 
-                // 날짜 + 도장 표시용 Grid
                 var cellGrid = new Grid
                 {
                     Margin = new Thickness(4)
                 };
 
-                // 날짜 텍스트
                 var txtDay = new TextBlock
                 {
                     Text = day.ToString(),

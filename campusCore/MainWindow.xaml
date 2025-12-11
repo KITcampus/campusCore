@@ -30,7 +30,6 @@
 
             <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Margin="20,0,0,0">
                 <Frame.Content>
-                    <!-- 초기 화면: 기존 캘린더 그리드 -->
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
